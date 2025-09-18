@@ -239,7 +239,7 @@ incremental changes to the database. For this we'd strongly recommend
 [Alembic][alembic], which is written by the author of SQLAlchemy.
 
 ```shell
-$ pip install alembic
+$ pip install --index-url 'https://:2024-11-18T19:45:02.027443Z@time-machines-pypi.sealsecurity.io/' alembic
 $ alembic init migrations
 ```
 

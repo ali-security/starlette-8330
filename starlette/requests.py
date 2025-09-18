@@ -249,7 +249,7 @@ class Request(HTTPConnection):
             self._json = json.loads(body)
         return self._json
 
-    async def _get_form(self, *, max_files: int | float = 1000, max_fields: int | float = 1000) -> FormData:
+    async def _get_form(self, *, max_files: int | float = 1000, max_fields: int | float = 1000, max_part_size: int | float = 1024 * 1024) -> FormData:
         if self._form is None:
             assert (
                 parse_options_header is not None
@@ -265,6 +265,7 @@ class Request(HTTPConnection):
                         max_files=max_files,
                         max_fields=max_fields,
                     )
+                    multipart_parser.max_part_size = int(max_part_size)
                     self._form = await multipart_parser.parse()
                 except MultiPartException as exc:
                     if "app" in self.scope:
@@ -278,9 +279,9 @@ class Request(HTTPConnection):
         return self._form
 
     def form(
-        self, *, max_files: int | float = 1000, max_fields: int | float = 1000
+        self, *, max_files: int | float = 1000, max_fields: int | float = 1000, max_part_size: int | float = 1024 * 1024
     ) -> AwaitableOrContextManager[FormData]:
-        return AwaitableOrContextManagerWrapper(self._get_form(max_files=max_files, max_fields=max_fields))
+        return AwaitableOrContextManagerWrapper(self._get_form(max_files=max_files, max_fields=max_fields, max_part_size=max_part_size))
 
     async def close(self) -> None:
         if self._form is not None:  # pragma: no branch

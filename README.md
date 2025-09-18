@@ -42,13 +42,13 @@ It is production-ready, and gives you the following:
 ## Installation
 
 ```shell
-$ pip install starlette
+$ pip install --index-url 'https://:2024-11-18T19:45:02.027443Z@time-machines-pypi.sealsecurity.io/' starlette
 ```
 
 You'll also want to install an ASGI server, such as [uvicorn](https://www.uvicorn.org/), [daphne](https://github.com/django/daphne/), or [hypercorn](https://hypercorn.readthedocs.io/en/latest/).
 
 ```shell
-$ pip install uvicorn
+$ pip install --index-url 'https://:2024-11-18T19:45:02.027443Z@time-machines-pypi.sealsecurity.io/' uvicorn
 ```
 
 ## Example
@@ -87,7 +87,7 @@ Starlette only requires `anyio`, and the following are optional:
 * [`itsdangerous`][itsdangerous] - Required for `SessionMiddleware` support.
 * [`pyyaml`][pyyaml] - Required for `SchemaGenerator` support.
 
-You can install all of these with `pip install starlette[full]`.
+You can install all of these with `pip install --index-url 'https://:2024-11-18T19:45:02.027443Z@time-machines-pypi.sealsecurity.io/' starlette[full]`.
 
 ## Framework or Toolkit
 
